@@ -1,0 +1,11 @@
+.headerButton {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	text-align: center;
+	padding-top: 4px;
+}
+
+.headerButton:hover {
+	background-color: #444455;
+}

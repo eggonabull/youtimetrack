@@ -1507,6 +1507,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap-css-modules@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-css-modules/-/bootstrap-css-modules-4.2.0.tgz#35fcd9f623ce12d1c9aaf05686f3bd03d2adcc7b"
+
 boxen@^1.2.1:
   version "1.3.0"
   resolved "https://registry.npmjs.org/boxen/-/boxen-1.3.0.tgz#55c6c39a8ba58d9c61ad22cd877532deb665a20b"
