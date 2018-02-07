@@ -5,40 +5,60 @@ import ScheduleItem from './ScheduleItem.js';
 import * as Styles from './Schedule.css';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
-type Props = {};
+type Props = {
+  resizeScheduleItem: () => void,
+  resortScheduleItem: () => void,
+  scheduleItems: any
+};
 
-console.log("ScheduleItem", ScheduleItem)
+const SortableItem = SortableElement(({value}) => 
+	<li>{value}</li>
+);
+
+const ScheduleContainer = SortableContainer(({items}) => (
+	<ul>
+		{items.map((value, index) => (
+			<SortableItem key={`time-${index}`} index={index} value={value} />
+		))}
+	</ul>
+));
 
 export default class Schedule extends Component<Props> {
   props: Props;
 
   constructor(props) {
   	super(props)
-  	this.onReorder = this.onReorder.bind(this);
-  	this.state = {list: [
-  		<li key="1"><ScheduleItem>ass</ScheduleItem></li>,
-  		<li key="2"><ScheduleItem>butt</ScheduleItem></li>,
-  		<li key="3"><ScheduleItem>fart</ScheduleItem></li>,
-  		<li key="4"><ScheduleItem>blob</ScheduleItem></li>
-  	]};
+    this.shouldCancelStart = this.shouldCancelStart.bind(this);
   }
 
-  onReorder(event, previousIndex, nextIndex, fromId, toId) {
-  	console.log("onReorder", previousIndex, nextIndex, fromId, toId);
-  	this.setState({
-  		list: reorder(this.state.list, previousIndex, nextIndex)
-  	});
+  shouldCancelStart(e) {
+    if (['input', 'textarea', 'select', 'option'].indexOf(e.target.tagName.toLowerCase()) !== -1) {
+      return true; // Return true to cancel sorting
+    }
+    if (e.target.className.split(" ").includes("react-resizable-handle")) {
+      return true;
+    }
   }
 
   render() {
+    console.log("schedule state", this.props);
+    let resize = this.props.resizeScheduleItem;
+    let scheduleList = this.props.scheduleItems;
+    let onSortEnd = this.props.resortScheduleItem;
+    console.log("onSortEnd", onSortEnd);
+    console.log("scheduleList", scheduleList)
     return <div className={`schedule ${Styles.schedule}`}>
-    	<SortableContainer
+    	<ScheduleContainer
     		reorderId="schedule"
-    		onReorder={this.onReorder}>
-    		{this.state.list.map((item, index) => 
-    			<SortableElement key={index}>{item}</SortableElement>
-    		)}
-	    </SortableContainer>
+    		onSortEnd={onSortEnd}
+    		items={Object.entries(scheduleList).map(([id, {duration, content}]) => {
+          return <ScheduleItem
+            duration={duration}
+            onResize={(...args) => resize(id, ...args)}>
+              {content}
+          </ScheduleItem>;
+        })}
+        shouldCancelStart={this.shouldCancelStart}/>
     </div>;
   }
 }

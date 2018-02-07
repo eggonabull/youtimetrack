@@ -4,10 +4,17 @@ import { Resizable, ResizableBox } from 'react-resizable';
 import * as Styles from './ScheduleItem.css';
 
 
-type Props = {};
+type Props = {
+    onResize: () => void,
+    duration: number
+};
 
 export default class ScheduleItem extends React.Component<Props> {
     props: Props;
+
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         let blah = <Draggable
@@ -21,10 +28,11 @@ export default class ScheduleItem extends React.Component<Props> {
                 <div className="handle" style={{backgroundColor: "#336", height: "5px"}}></div>
                 <ResizableBox
                     className={Styles.box}
-                    height={30}
-                    width={350}
+                    height={this.props.duration}
+                    width={300}
                     draggableOpts={{grid: [5, 5]}}
-                    axis="y">
+                    axis="y"
+                    onResize={this.props.onResize}>
                     {this.props.children}
                 </ResizableBox>
             </div>

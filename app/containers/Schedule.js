@@ -4,8 +4,9 @@ import Schedule from '../components/Schedule';
 import * as ScheduleActions from '../actions/schedule';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("container schedule", state, ownProps);
   return {
-    isOpen: state.headerIsOpen
+    scheduleItems: state.scheduleItems
   }
 }
 

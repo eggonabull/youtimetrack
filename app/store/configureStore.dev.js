@@ -5,6 +5,7 @@ import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 import * as headerActions from '../actions/header';
+import * as scheduleActions from '../actions/schedule';
 import type { headerStateType } from '../reducers/header';
 
 const history = createHashHistory();
@@ -34,6 +35,7 @@ const configureStore = (initialState?: headerStateType) => {
 
   // Redux DevTools Configuration
   const actionCreators = {
+    ...scheduleActions,
     ...headerActions,
     ...routerActions,
   };
