@@ -7,6 +7,7 @@ import rootReducer from '../reducers';
 import * as headerActions from '../actions/header';
 import * as scheduleActions from '../actions/schedule';
 import type { headerStateType } from '../reducers/header';
+import * as settingsActions from '../actions/settings';
 
 const history = createHashHistory();
 
@@ -35,9 +36,10 @@ const configureStore = (initialState?: headerStateType) => {
 
   // Redux DevTools Configuration
   const actionCreators = {
-    ...scheduleActions,
     ...headerActions,
     ...routerActions,
+    ...scheduleActions,
+    ...settingsActions
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

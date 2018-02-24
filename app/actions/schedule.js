@@ -5,19 +5,19 @@ type actionType = {
   +type: string
 };
 
-export const ADD_SCHEDULE_ITEM = 'ADD_SCHEDULE_ITEM';
-export const RESIZE_SCHEDULE_ITEM = 'RESIZE_SCHEDULE_ITEM';
-export const RESORT_SCHEDULE_ITEM = 'RESORT_SCHEDULE_ITEM';
+export const SCHEDULE_ITEM_ADD = 'SCHEDULE_ITEM_ADD';
+export const SCHEDULE_ITEM_RESIZE = 'SCHEDULE_ITEM_RESIZE';
+export const SCHEDULE_ITEM_RESORT = 'SCHEDULE_ITEM_RESORT';
 
 export function addScheduleItem() {
   return {
-    type: ADD_SCHEDULE_ITEM
+    type: SCHEDULE_ITEM_ADD
   };
 }
 
 export function resizeScheduleItem(id, mouseEvent, {node, size}) {
   return {
-    type: RESIZE_SCHEDULE_ITEM,
+    type: SCHEDULE_ITEM_RESIZE,
     id,
     size
   }
@@ -25,7 +25,7 @@ export function resizeScheduleItem(id, mouseEvent, {node, size}) {
 
 export function resortScheduleItem({collection, oldIndex, newIndex}, mouseEvent) {
 	return {
-		type: RESORT_SCHEDULE_ITEM,
+		type: SCHEDULE_ITEM_RESORT,
 		oldIndex: oldIndex,
 		newIndex: newIndex
 	}

@@ -50,6 +50,7 @@ export default class Header extends Component<Props> {
                   <Nav navbar>
                     <NavItem><NavLink href="#/">Timesheet</NavLink></NavItem>
                     <NavItem><NavLink href="#/new-item">New Item</NavLink></NavItem>
+                    <NavItem><NavLink href="#/settings">Settings</NavLink></NavItem>
                   </Nav>
             </Collapse>
         </Navbar>

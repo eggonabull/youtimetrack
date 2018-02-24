@@ -23,15 +23,14 @@ export function scheduleItems(
   ],
   action: actionType
 ) {
-  console.log("reducers scheduleItems", state, action);
   switch (action.type) {
-    case scheduleActions.ADD_SCHEDULE_ITEM:
+    case scheduleActions.SCHEDULE_ITEM_ADD:
       state.push({"duration": 15, "content": "asdf"})
       return state;
-    case scheduleActions.RESIZE_SCHEDULE_ITEM:
+    case scheduleActions.SCHEDULE_ITEM_RESIZE:
       state[action.id].duration = action.size.height
       return state;
-    case scheduleActions.RESORT_SCHEDULE_ITEM:
+    case scheduleActions.SCHEDULE_ITEM_RESORT:
       return arrayMove(state, action.oldIndex, action.newIndex);
     default:
       return state;
